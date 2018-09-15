@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ag.xml.dao.BrMapper">
+  <resultMap id="BaseResultMap" type="com.ag.xml.model.Br">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="ic" jdbcType="CHAR" property="ic" />
+    <result column="account" jdbcType="CHAR" property="account" />
+    <result column="platformType" jdbcType="CHAR" property="platformType" />
+    <result column="dataType" jdbcType="CHAR" property="dataType" />
+    <result column="playerName" jdbcType="CHAR" property="playerName" />
+    <result column="billNo" jdbcType="CHAR" property="billNo" />
+    <result column="gameCode" jdbcType="CHAR" property="gameCode" />
+    <result column="netAmount" jdbcType="CHAR" property="netAmount" />
+    <result column="betTime" jdbcType="TIMESTAMP" property="betTime" />
+    <result column="gameType" jdbcType="CHAR" property="gameType" />
+    <result column="betAmount" jdbcType="CHAR" property="betAmount" />
+    <result column="validBetAmount" jdbcType="CHAR" property="validBetAmount" />
+    <result column="flag" jdbcType="CHAR" property="flag" />
+    <result column="playType" jdbcType="CHAR" property="playType" />
+    <result column="tableCode" jdbcType="CHAR" property="tableCode" />
+    <result column="loginIP" jdbcType="CHAR" property="loginIP" />
+    <result column="round" jdbcType="CHAR" property="round" />
+    <result column="beforeCredit" jdbcType="CHAR" property="beforeCredit" />
+    <result column="deviceType" jdbcType="CHAR" property="deviceType" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, ic, account, platformType, dataType, playerName, billNo, gameCode, netAmount, 
+    betTime, gameType, betAmount, validBetAmount, flag, playType, tableCode, loginIP, 
+    round, beforeCredit, deviceType
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from live_br
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from live_br
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ag.xml.model.Br">
+    insert into live_br (id, ic, account, platformType, 
+      dataType, playerName, billNo, 
+      gameCode, netAmount, betTime, 
+      gameType, betAmount, validBetAmount, 
+      flag, playType, tableCode, loginIP, 
+      round, beforeCredit, deviceType
+      )
+    values (#{id,jdbcType=BIGINT}, #{ic,jdbcType=CHAR}, #{account,jdbcType=CHAR}, #{platformType,jdbcType=CHAR}, 
+      #{dataType,jdbcType=CHAR}, #{playerName,jdbcType=CHAR}, #{billNo,jdbcType=CHAR}, 
+      #{gameCode,jdbcType=CHAR}, #{netAmount,jdbcType=CHAR}, #{betTime,jdbcType=TIMESTAMP}, 
+      #{gameType,jdbcType=CHAR}, #{betAmount,jdbcType=CHAR}, #{validBetAmount,jdbcType=CHAR}, 
+      #{flag,jdbcType=CHAR}, #{playType,jdbcType=CHAR}, #{tableCode,jdbcType=CHAR}, #{loginIP,jdbcType=CHAR}, 
+      #{round,jdbcType=CHAR}, #{beforeCredit,jdbcType=CHAR}, #{deviceType,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ag.xml.model.Br">
+    replace into live_br
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="ic != null">
+        ic,
+      </if>
+      <if test="account != null">
+        account,
+      </if>
+      <if test="platformType != null">
+        platformType,
+      </if>
+      <if test="dataType != null">
+        dataType,
+      </if>
+      <if test="playerName != null">
+        playerName,
+      </if>
+      <if test="billNo != null">
+        billNo,
+      </if>
+      <if test="gameCode != null">
+        gameCode,
+      </if>
+      <if test="netAmount != null">
+        netAmount,
+      </if>
+      <if test="betTime != null">
+        betTime,
+      </if>
+      <if test="gameType != null">
+        gameType,
+      </if>
+      <if test="betAmount != null">
+        betAmount,
+      </if>
+      <if test="validBetAmount != null">
+        validBetAmount,
+      </if>
+      <if test="flag != null">
+        flag,
+      </if>
+      <if test="playType != null">
+        playType,
+      </if>
+      <if test="tableCode != null">
+        tableCode,
+      </if>
+      <if test="loginIP != null">
+        loginIP,
+      </if>
+      <if test="round != null">
+        round,
+      </if>
+      <if test="beforeCredit != null">
+        beforeCredit,
+      </if>
+      <if test="deviceType != null">
+        deviceType,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="ic != null">
+        #{ic,jdbcType=CHAR},
+      </if>
+      <if test="account != null">
+        #{account,jdbcType=CHAR},
+      </if>
+      <if test="platformType != null">
+        #{platformType,jdbcType=CHAR},
+      </if>
+      <if test="dataType != null">
+        #{dataType,jdbcType=CHAR},
+      </if>
+      <if test="playerName != null">
+        #{playerName,jdbcType=CHAR},
+      </if>
+      <if test="billNo != null">
+        #{billNo,jdbcType=CHAR},
+      </if>
+      <if test="gameCode != null">
+        #{gameCode,jdbcType=CHAR},
+      </if>
+      <if test="netAmount != null">
+        #{netAmount,jdbcType=CHAR},
+      </if>
+      <if test="betTime != null">
+        #{betTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gameType != null">
+        #{gameType,jdbcType=CHAR},
+      </if>
+      <if test="betAmount != null">
+        #{betAmount,jdbcType=CHAR},
+      </if>
+      <if test="validBetAmount != null">
+        #{validBetAmount,jdbcType=CHAR},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=CHAR},
+      </if>
+      <if test="playType != null">
+        #{playType,jdbcType=CHAR},
+      </if>
+      <if test="tableCode != null">
+        #{tableCode,jdbcType=CHAR},
+      </if>
+      <if test="loginIP != null">
+        #{loginIP,jdbcType=CHAR},
+      </if>
+      <if test="round != null">
+        #{round,jdbcType=CHAR},
+      </if>
+      <if test="beforeCredit != null">
+        #{beforeCredit,jdbcType=CHAR},
+      </if>
+      <if test="deviceType != null">
+        #{deviceType,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ag.xml.model.Br">
+    update live_br
+    <set>
+      <if test="ic != null">
+        ic = #{ic,jdbcType=CHAR},
+      </if>
+      <if test="account != null">
+        account = #{account,jdbcType=CHAR},
+      </if>
+      <if test="platformType != null">
+        platformType = #{platformType,jdbcType=CHAR},
+      </if>
+      <if test="dataType != null">
+        dataType = #{dataType,jdbcType=CHAR},
+      </if>
+      <if test="playerName != null">
+        playerName = #{playerName,jdbcType=CHAR},
+      </if>
+      <if test="billNo != null">
+        billNo = #{billNo,jdbcType=CHAR},
+      </if>
+      <if test="gameCode != null">
+        gameCode = #{gameCode,jdbcType=CHAR},
+      </if>
+      <if test="netAmount != null">
+        netAmount = #{netAmount,jdbcType=CHAR},
+      </if>
+      <if test="betTime != null">
+        betTime = #{betTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gameType != null">
+        gameType = #{gameType,jdbcType=CHAR},
+      </if>
+      <if test="betAmount != null">
+        betAmount = #{betAmount,jdbcType=CHAR},
+      </if>
+      <if test="validBetAmount != null">
+        validBetAmount = #{validBetAmount,jdbcType=CHAR},
+      </if>
+      <if test="flag != null">
+        flag = #{flag,jdbcType=CHAR},
+      </if>
+      <if test="playType != null">
+        playType = #{playType,jdbcType=CHAR},
+      </if>
+      <if test="tableCode != null">
+        tableCode = #{tableCode,jdbcType=CHAR},
+      </if>
+      <if test="loginIP != null">
+        loginIP = #{loginIP,jdbcType=CHAR},
+      </if>
+      <if test="round != null">
+        round = #{round,jdbcType=CHAR},
+      </if>
+      <if test="beforeCredit != null">
+        beforeCredit = #{beforeCredit,jdbcType=CHAR},
+      </if>
+      <if test="deviceType != null">
+        deviceType = #{deviceType,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ag.xml.model.Br">
+    update live_br
+    set ic = #{ic,jdbcType=CHAR},
+      account = #{account,jdbcType=CHAR},
+      platformType = #{platformType,jdbcType=CHAR},
+      dataType = #{dataType,jdbcType=CHAR},
+      playerName = #{playerName,jdbcType=CHAR},
+      billNo = #{billNo,jdbcType=CHAR},
+      gameCode = #{gameCode,jdbcType=CHAR},
+      netAmount = #{netAmount,jdbcType=CHAR},
+      betTime = #{betTime,jdbcType=TIMESTAMP},
+      gameType = #{gameType,jdbcType=CHAR},
+      betAmount = #{betAmount,jdbcType=CHAR},
+      validBetAmount = #{validBetAmount,jdbcType=CHAR},
+      flag = #{flag,jdbcType=CHAR},
+      playType = #{playType,jdbcType=CHAR},
+      tableCode = #{tableCode,jdbcType=CHAR},
+      loginIP = #{loginIP,jdbcType=CHAR},
+      round = #{round,jdbcType=CHAR},
+      beforeCredit = #{beforeCredit,jdbcType=CHAR},
+      deviceType = #{deviceType,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

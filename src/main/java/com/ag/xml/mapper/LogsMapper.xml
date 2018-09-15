@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ag.xml.dao.LogsMapper">
+  <resultMap id="BaseResultMap" type="com.ag.xml.model.Logs">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="path" jdbcType="VARCHAR" property="path" />
+    <result column="filename" jdbcType="VARCHAR" property="filename" />
+    <result column="line" jdbcType="INTEGER" property="line" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+  </resultMap>
+  <resultMap id="BaseResultLine" type="java.lang.Integer">
+    <result column="line" jdbcType="INTEGER" property="line" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, path, filename, line, updatetime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from live_logs
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from live_logs
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ag.xml.model.Logs">
+    insert into live_logs (id, path, filename, 
+      line, updatetime)
+    values (#{id,jdbcType=BIGINT}, #{path,jdbcType=VARCHAR}, #{filename,jdbcType=VARCHAR}, 
+      #{line,jdbcType=INTEGER}, #{updatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ag.xml.model.Logs">
+    replace into live_logs
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="path != null">
+        path,
+      </if>
+      <if test="filename != null">
+        filename,
+      </if>
+      <if test="line != null">
+        line,
+      </if>
+      <if test="updatetime != null">
+        updatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="path != null">
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="filename != null">
+        #{filename,jdbcType=VARCHAR},
+      </if>
+      <if test="line != null">
+        #{line,jdbcType=INTEGER},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ag.xml.model.Logs">
+    update live_logs
+    <set>
+      <if test="path != null">
+        path = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="filename != null">
+        filename = #{filename,jdbcType=VARCHAR},
+      </if>
+      <if test="line != null">
+        line = #{line,jdbcType=INTEGER},
+      </if>
+      <if test="updatetime != null">
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ag.xml.model.Logs">
+    update live_logs
+    set path = #{path,jdbcType=VARCHAR},
+      filename = #{filename,jdbcType=VARCHAR},
+      line = #{line,jdbcType=INTEGER},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectLine" resultMap="BaseResultLine">
+    select COALESCE(max(line),0) as line
+    from live_logs
+    <where>
+      <if test="path != null">
+        path = #{path,jdbcType=VARCHAR}
+      </if>
+      <if test="filename != null">
+        and filename = #{filename,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+</mapper>

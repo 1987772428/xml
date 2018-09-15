@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ag.xml.dao.TrMapper">
+  <resultMap id="BaseResultMap" type="com.ag.xml.model.Tr">
+    <id column="tid" jdbcType="BIGINT" property="tid" />
+    <result column="ic" jdbcType="CHAR" property="ic" />
+    <result column="account" jdbcType="CHAR" property="account" />
+    <result column="platformType" jdbcType="CHAR" property="platformType" />
+    <result column="dataType" jdbcType="CHAR" property="dataType" />
+    <result column="creationTime" jdbcType="TIMESTAMP" property="creationTime" />
+    <result column="transferId" jdbcType="CHAR" property="transferId" />
+    <result column="tradeNo" jdbcType="CHAR" property="tradeNo" />
+    <result column="playerName" jdbcType="CHAR" property="playerName" />
+    <result column="transferType" jdbcType="CHAR" property="transferType" />
+    <result column="transferAmount" jdbcType="CHAR" property="transferAmount" />
+    <result column="previousAmount" jdbcType="CHAR" property="previousAmount" />
+    <result column="currentAmount" jdbcType="CHAR" property="currentAmount" />
+    <result column="IP" jdbcType="CHAR" property="IP" />
+    <result column="gameCode" jdbcType="CHAR" property="gameCode" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    tid, ic, account, platformType, dataType, creationTime, transferId, tradeNo, playerName, 
+    transferType, transferAmount, previousAmount, currentAmount, IP, gameCode
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from live_tr
+    where tid = #{tid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from live_tr
+    where tid = #{tid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ag.xml.model.Tr">
+    insert into live_tr (tid, ic, account, platformType, 
+      dataType, creationTime, transferId, 
+      tradeNo, playerName, transferType, 
+      transferAmount, previousAmount, currentAmount, 
+      IP, gameCode)
+    values (#{tid,jdbcType=BIGINT}, #{ic,jdbcType=CHAR}, #{account,jdbcType=CHAR}, #{platformType,jdbcType=CHAR}, 
+      #{dataType,jdbcType=CHAR}, #{creationTime,jdbcType=TIMESTAMP}, #{transferId,jdbcType=CHAR}, 
+      #{tradeNo,jdbcType=CHAR}, #{playerName,jdbcType=CHAR}, #{transferType,jdbcType=CHAR}, 
+      #{transferAmount,jdbcType=CHAR}, #{previousAmount,jdbcType=CHAR}, #{currentAmount,jdbcType=CHAR}, 
+      #{IP,jdbcType=CHAR}, #{gameCode,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ag.xml.model.Tr">
+    replace into live_tr
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tid != null">
+        tid,
+      </if>
+      <if test="ic != null">
+        ic,
+      </if>
+      <if test="account != null">
+        account,
+      </if>
+      <if test="platformType != null">
+        platformType,
+      </if>
+      <if test="dataType != null">
+        dataType,
+      </if>
+      <if test="creationTime != null">
+        creationTime,
+      </if>
+      <if test="transferId != null">
+        transferId,
+      </if>
+      <if test="tradeNo != null">
+        tradeNo,
+      </if>
+      <if test="playerName != null">
+        playerName,
+      </if>
+      <if test="transferType != null">
+        transferType,
+      </if>
+      <if test="transferAmount != null">
+        transferAmount,
+      </if>
+      <if test="previousAmount != null">
+        previousAmount,
+      </if>
+      <if test="currentAmount != null">
+        currentAmount,
+      </if>
+      <if test="IP != null">
+        IP,
+      </if>
+      <if test="gameCode != null">
+        gameCode,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tid != null">
+        #{tid,jdbcType=BIGINT},
+      </if>
+      <if test="ic != null">
+        #{ic,jdbcType=CHAR},
+      </if>
+      <if test="account != null">
+        #{account,jdbcType=CHAR},
+      </if>
+      <if test="platformType != null">
+        #{platformType,jdbcType=CHAR},
+      </if>
+      <if test="dataType != null">
+        #{dataType,jdbcType=CHAR},
+      </if>
+      <if test="creationTime != null">
+        #{creationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="transferId != null">
+        #{transferId,jdbcType=CHAR},
+      </if>
+      <if test="tradeNo != null">
+        #{tradeNo,jdbcType=CHAR},
+      </if>
+      <if test="playerName != null">
+        #{playerName,jdbcType=CHAR},
+      </if>
+      <if test="transferType != null">
+        #{transferType,jdbcType=CHAR},
+      </if>
+      <if test="transferAmount != null">
+        #{transferAmount,jdbcType=CHAR},
+      </if>
+      <if test="previousAmount != null">
+        #{previousAmount,jdbcType=CHAR},
+      </if>
+      <if test="currentAmount != null">
+        #{currentAmount,jdbcType=CHAR},
+      </if>
+      <if test="IP != null">
+        #{IP,jdbcType=CHAR},
+      </if>
+      <if test="gameCode != null">
+        #{gameCode,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ag.xml.model.Tr">
+    update live_tr
+    <set>
+      <if test="ic != null">
+        ic = #{ic,jdbcType=CHAR},
+      </if>
+      <if test="account != null">
+        account = #{account,jdbcType=CHAR},
+      </if>
+      <if test="platformType != null">
+        platformType = #{platformType,jdbcType=CHAR},
+      </if>
+      <if test="dataType != null">
+        dataType = #{dataType,jdbcType=CHAR},
+      </if>
+      <if test="creationTime != null">
+        creationTime = #{creationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="transferId != null">
+        transferId = #{transferId,jdbcType=CHAR},
+      </if>
+      <if test="tradeNo != null">
+        tradeNo = #{tradeNo,jdbcType=CHAR},
+      </if>
+      <if test="playerName != null">
+        playerName = #{playerName,jdbcType=CHAR},
+      </if>
+      <if test="transferType != null">
+        transferType = #{transferType,jdbcType=CHAR},
+      </if>
+      <if test="transferAmount != null">
+        transferAmount = #{transferAmount,jdbcType=CHAR},
+      </if>
+      <if test="previousAmount != null">
+        previousAmount = #{previousAmount,jdbcType=CHAR},
+      </if>
+      <if test="currentAmount != null">
+        currentAmount = #{currentAmount,jdbcType=CHAR},
+      </if>
+      <if test="IP != null">
+        IP = #{IP,jdbcType=CHAR},
+      </if>
+      <if test="gameCode != null">
+        gameCode = #{gameCode,jdbcType=CHAR},
+      </if>
+    </set>
+    where tid = #{tid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ag.xml.model.Tr">
+    update live_tr
+    set ic = #{ic,jdbcType=CHAR},
+      account = #{account,jdbcType=CHAR},
+      platformType = #{platformType,jdbcType=CHAR},
+      dataType = #{dataType,jdbcType=CHAR},
+      creationTime = #{creationTime,jdbcType=TIMESTAMP},
+      transferId = #{transferId,jdbcType=CHAR},
+      tradeNo = #{tradeNo,jdbcType=CHAR},
+      playerName = #{playerName,jdbcType=CHAR},
+      transferType = #{transferType,jdbcType=CHAR},
+      transferAmount = #{transferAmount,jdbcType=CHAR},
+      previousAmount = #{previousAmount,jdbcType=CHAR},
+      currentAmount = #{currentAmount,jdbcType=CHAR},
+      IP = #{IP,jdbcType=CHAR},
+      gameCode = #{gameCode,jdbcType=CHAR}
+    where tid = #{tid,jdbcType=BIGINT}
+  </update>
+</mapper>

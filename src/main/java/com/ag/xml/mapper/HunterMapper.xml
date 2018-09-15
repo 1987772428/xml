@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ag.xml.dao.HunterMapper">
+  <resultMap id="BaseResultMap" type="com.ag.xml.model.Hunter">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="ic" jdbcType="CHAR" property="ic" />
+    <result column="account" jdbcType="CHAR" property="account" />
+    <result column="platformType" jdbcType="CHAR" property="platformType" />
+    <result column="dataType" jdbcType="CHAR" property="dataType" />
+    <result column="playerName" jdbcType="CHAR" property="playerName" />
+    <result column="tradeNo" jdbcType="CHAR" property="tradeNo" />
+    <result column="Cost" jdbcType="CHAR" property="cost" />
+    <result column="Earn" jdbcType="CHAR" property="earn" />
+    <result column="creationTime" jdbcType="TIMESTAMP" property="creationTime" />
+    <result column="Jackpotcomm" jdbcType="CHAR" property="jackpotcomm" />
+    <result column="Roomid" jdbcType="CHAR" property="roomid" />
+    <result column="Roombet" jdbcType="CHAR" property="roombet" />
+    <result column="SceneStartTime" jdbcType="TIMESTAMP" property="sceneStartTime" />
+    <result column="SceneEndTime" jdbcType="TIMESTAMP" property="sceneEndTime" />
+    <result column="transferAmount" jdbcType="CHAR" property="transferAmount" />
+    <result column="previousAmount" jdbcType="CHAR" property="previousAmount" />
+    <result column="currentAmount" jdbcType="CHAR" property="currentAmount" />
+    <result column="flag" jdbcType="CHAR" property="flag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, ic, account, platformType, dataType, playerName, tradeNo, Cost, Earn, creationTime, 
+    Jackpotcomm, Roomid, Roombet, SceneStartTime, SceneEndTime, transferAmount, previousAmount, 
+    currentAmount, flag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from live_hunter
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from live_hunter
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ag.xml.model.Hunter">
+    insert into live_hunter (id, ic, account, platformType, 
+      dataType, playerName, tradeNo, 
+      Cost, Earn, creationTime, 
+      Jackpotcomm, Roomid, Roombet, 
+      SceneStartTime, SceneEndTime, transferAmount, 
+      previousAmount, currentAmount, flag
+      )
+    values (#{id,jdbcType=BIGINT}, #{ic,jdbcType=CHAR}, #{account,jdbcType=CHAR}, #{platformType,jdbcType=CHAR}, 
+      #{dataType,jdbcType=CHAR}, #{playerName,jdbcType=CHAR}, #{tradeNo,jdbcType=CHAR}, 
+      #{cost,jdbcType=CHAR}, #{earn,jdbcType=CHAR}, #{creationTime,jdbcType=TIMESTAMP}, 
+      #{jackpotcomm,jdbcType=CHAR}, #{roomid,jdbcType=CHAR}, #{roombet,jdbcType=CHAR}, 
+      #{sceneStartTime,jdbcType=TIMESTAMP}, #{sceneEndTime,jdbcType=TIMESTAMP}, #{transferAmount,jdbcType=CHAR}, 
+      #{previousAmount,jdbcType=CHAR}, #{currentAmount,jdbcType=CHAR}, #{flag,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ag.xml.model.Hunter">
+    replace into live_hunter
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="ic != null">
+        ic,
+      </if>
+      <if test="account != null">
+        account,
+      </if>
+      <if test="platformType != null">
+        platformType,
+      </if>
+      <if test="dataType != null">
+        dataType,
+      </if>
+      <if test="playerName != null">
+        playerName,
+      </if>
+      <if test="tradeNo != null">
+        tradeNo,
+      </if>
+      <if test="cost != null">
+        Cost,
+      </if>
+      <if test="earn != null">
+        Earn,
+      </if>
+      <if test="creationTime != null">
+        creationTime,
+      </if>
+      <if test="jackpotcomm != null">
+        Jackpotcomm,
+      </if>
+      <if test="roomid != null">
+        Roomid,
+      </if>
+      <if test="roombet != null">
+        Roombet,
+      </if>
+      <if test="sceneStartTime != null">
+        SceneStartTime,
+      </if>
+      <if test="sceneEndTime != null">
+        SceneEndTime,
+      </if>
+      <if test="transferAmount != null">
+        transferAmount,
+      </if>
+      <if test="previousAmount != null">
+        previousAmount,
+      </if>
+      <if test="currentAmount != null">
+        currentAmount,
+      </if>
+      <if test="flag != null">
+        flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="ic != null">
+        #{ic,jdbcType=CHAR},
+      </if>
+      <if test="account != null">
+        #{account,jdbcType=CHAR},
+      </if>
+      <if test="platformType != null">
+        #{platformType,jdbcType=CHAR},
+      </if>
+      <if test="dataType != null">
+        #{dataType,jdbcType=CHAR},
+      </if>
+      <if test="playerName != null">
+        #{playerName,jdbcType=CHAR},
+      </if>
+      <if test="tradeNo != null">
+        #{tradeNo,jdbcType=CHAR},
+      </if>
+      <if test="cost != null">
+        #{cost,jdbcType=CHAR},
+      </if>
+      <if test="earn != null">
+        #{earn,jdbcType=CHAR},
+      </if>
+      <if test="creationTime != null">
+        #{creationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jackpotcomm != null">
+        #{jackpotcomm,jdbcType=CHAR},
+      </if>
+      <if test="roomid != null">
+        #{roomid,jdbcType=CHAR},
+      </if>
+      <if test="roombet != null">
+        #{roombet,jdbcType=CHAR},
+      </if>
+      <if test="sceneStartTime != null">
+        #{sceneStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sceneEndTime != null">
+        #{sceneEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="transferAmount != null">
+        #{transferAmount,jdbcType=CHAR},
+      </if>
+      <if test="previousAmount != null">
+        #{previousAmount,jdbcType=CHAR},
+      </if>
+      <if test="currentAmount != null">
+        #{currentAmount,jdbcType=CHAR},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ag.xml.model.Hunter">
+    update live_hunter
+    <set>
+      <if test="ic != null">
+        ic = #{ic,jdbcType=CHAR},
+      </if>
+      <if test="account != null">
+        account = #{account,jdbcType=CHAR},
+      </if>
+      <if test="platformType != null">
+        platformType = #{platformType,jdbcType=CHAR},
+      </if>
+      <if test="dataType != null">
+        dataType = #{dataType,jdbcType=CHAR},
+      </if>
+      <if test="playerName != null">
+        playerName = #{playerName,jdbcType=CHAR},
+      </if>
+      <if test="tradeNo != null">
+        tradeNo = #{tradeNo,jdbcType=CHAR},
+      </if>
+      <if test="cost != null">
+        Cost = #{cost,jdbcType=CHAR},
+      </if>
+      <if test="earn != null">
+        Earn = #{earn,jdbcType=CHAR},
+      </if>
+      <if test="creationTime != null">
+        creationTime = #{creationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jackpotcomm != null">
+        Jackpotcomm = #{jackpotcomm,jdbcType=CHAR},
+      </if>
+      <if test="roomid != null">
+        Roomid = #{roomid,jdbcType=CHAR},
+      </if>
+      <if test="roombet != null">
+        Roombet = #{roombet,jdbcType=CHAR},
+      </if>
+      <if test="sceneStartTime != null">
+        SceneStartTime = #{sceneStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sceneEndTime != null">
+        SceneEndTime = #{sceneEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="transferAmount != null">
+        transferAmount = #{transferAmount,jdbcType=CHAR},
+      </if>
+      <if test="previousAmount != null">
+        previousAmount = #{previousAmount,jdbcType=CHAR},
+      </if>
+      <if test="currentAmount != null">
+        currentAmount = #{currentAmount,jdbcType=CHAR},
+      </if>
+      <if test="flag != null">
+        flag = #{flag,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ag.xml.model.Hunter">
+    update live_hunter
+    set ic = #{ic,jdbcType=CHAR},
+      account = #{account,jdbcType=CHAR},
+      platformType = #{platformType,jdbcType=CHAR},
+      dataType = #{dataType,jdbcType=CHAR},
+      playerName = #{playerName,jdbcType=CHAR},
+      tradeNo = #{tradeNo,jdbcType=CHAR},
+      Cost = #{cost,jdbcType=CHAR},
+      Earn = #{earn,jdbcType=CHAR},
+      creationTime = #{creationTime,jdbcType=TIMESTAMP},
+      Jackpotcomm = #{jackpotcomm,jdbcType=CHAR},
+      Roomid = #{roomid,jdbcType=CHAR},
+      Roombet = #{roombet,jdbcType=CHAR},
+      SceneStartTime = #{sceneStartTime,jdbcType=TIMESTAMP},
+      SceneEndTime = #{sceneEndTime,jdbcType=TIMESTAMP},
+      transferAmount = #{transferAmount,jdbcType=CHAR},
+      previousAmount = #{previousAmount,jdbcType=CHAR},
+      currentAmount = #{currentAmount,jdbcType=CHAR},
+      flag = #{flag,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
