@@ -47,6 +47,9 @@ public class XmlController {
     @Value("${xml.thread.num}")
     private Integer threadNum;
 
+    @Value("${xml.awaitTime}")
+    private Integer awaitTime;
+
     @Autowired
     BrService brService;
 
@@ -127,7 +130,8 @@ public class XmlController {
         }
 //        executorService.shutdown();
 //        futures.clear();
-        final long awaitTime = 30 * 1000;
+        // 超时时间
+//        final long awaitTime = 60 * 1000;
         try {
             // 向学生传达“问题解答完毕后请举手示意！”
             executorService.shutdown();
@@ -136,8 +140,6 @@ public class XmlController {
             if (!executorService.awaitTermination(awaitTime, TimeUnit.MILLISECONDS)) {
                 // 超时的时候向线程池中所有的线程发出中断(interrupted)。
                 executorService.shutdownNow();
-                // 释放列表
-                fileList.clear();
             } else {
                 // 释放列表
                 fileList.clear();
