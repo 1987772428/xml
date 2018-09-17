@@ -220,7 +220,7 @@ public class XmlController {
             logger.error(file + "，文件打开失败");
         }
 
-        return "更新成功";
+        return log + "，更新成功";
     }
 
     /**
