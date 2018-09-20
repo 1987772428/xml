@@ -240,12 +240,14 @@ public class XmlController {
             // 当前路径目标文件夹
             File folder = null;
             // 遍历，目录下的所有文件
+            Pattern pattern = Pattern.compile("[0-9]*");
+            Boolean number;
             for (File f : files) {
                 if (f.isDirectory()) {
                     // 判断文件夹名称是否为纯数字
-                    Pattern pattern = Pattern.compile("[0-9]*");
-                    Boolean number = pattern.matcher(f.getName()).matches();
+                    number = pattern.matcher(f.getName()).matches();
                     if (number) {
+                        // 加一个验证不读取2天前的xml？
                         folder = f;
                     } else {
                         this.getFolder(f.getAbsolutePath());
